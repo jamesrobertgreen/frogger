@@ -2,6 +2,7 @@ $(function() {
   var scene;
   var camera;
   var renderer;
+  var controls;
 
   const initScene = () => {
     scene = new THREE.Scene();
@@ -21,12 +22,15 @@ $(function() {
     drawVehicle(0,0,0);
     drawTrees();
 
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
+
     camera.position.z = 5;
+    controls.update();
   };
 
   const animate = function() {
     requestAnimationFrame(animate);
-
+	controls.update();
     renderer.render(scene, camera);
   };
 
